@@ -1,7 +1,6 @@
-use std::net::TcpListener;
-
 use actix_rt;
 use sqlx::{Connection, PgConnection};
+use std::net::TcpListener;
 use zero2prod::configuration::get_configuration;
 
 fn spawn_app() -> String {
