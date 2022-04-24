@@ -12,12 +12,15 @@ pub struct FormData {
 
 pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
     let request_id = Uuid::new_v4();
-    tracing::info!(
-        "request_id {} - Adding '{}' '{}' as a new subscriber",
-        request_id,
-        form.email,
-        form.name
+    //  Spans, like logs, have an associated level
+    // `info_span` creates a span at the info-level
+    let request_span = tracing::info_span!(
+        "Adding a new subscriber",
+        %request_id,
+        subscriber_email = %form.email,
+        subscriber_name = %form.name
     );
+    let _request_span_guard = request_span.enter();
     tracing::info!(
         "request_id {} - Saving new subscriber details in the database",
         request_id
