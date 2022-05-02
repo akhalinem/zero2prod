@@ -17,6 +17,8 @@ tracing-subscriber = { version = "0.3.11", features = ["registry", "env-filter"]
 tracing-bunyan-formatter = "0.3.2"
 tracing-log = "0.1.3"
 tracing-actix-web = "0.5.1"
+serde-aux = "3.0.1"
+log = "0.4.16"
 [dependencies.sqlx]
 version = "0.5.7"
 default-features = false
